@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/logfinal"
+    android:backgroundTint="#3387ceeb"
+    android:backgroundTintMode="screen"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="183dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+        <TextView
+            android:id="@+id/txt"
+            android:text="T  ol   Zia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           android:layout_marginLeft="123dp"
+            android:layout_marginTop="325dp"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#9210316B"/>
+
+
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
