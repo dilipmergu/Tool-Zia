@@ -97,8 +97,9 @@
 
     </TableRow>
     <Button
-        android:id="@+id/btn_Submit"
+        android:id="@+id/btn_book"
         android:text="Book"
+        android:visibility="gone"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
