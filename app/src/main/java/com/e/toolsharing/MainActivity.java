@@ -1,7 +1,6 @@
 package com.e.toolsharing;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static android.view.View.GONE;
+import com.e.toolsharing.activities.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     Animation top_anim,btm_anim;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this,LoginActivity.class);
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         },3000);
