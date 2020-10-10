@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">ToolSharing</string>
+
+    <string-array name="status">
+        <item>Please choose Tool Status</item>
+        <item>Available</item>
+        <item>Not Available</item>
+    </string-array>
+
+    <string-array name="category">
+        <item>Please Choose Tool Category</item>
+        <item>Cutters</item>
+        <item>Shapers</item>
+        <item>Pointers</item>
+        <item>Others</item>
+    </string-array>
 </resources>
