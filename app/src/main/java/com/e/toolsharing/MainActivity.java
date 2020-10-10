@@ -1,41 +1,59 @@
 package com.e.toolsharing;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.MenuItem;
 
-import com.e.toolsharing.activities.LoginActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    Animation top_anim,btm_anim;
-    ImageView imageView;
-    TextView textlogo,texttagline;
+    BottomNavigationView bottomNavigationView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView = findViewById(R.id.imageView);
-        textlogo = findViewById(R.id.textView4);
-        texttagline = findViewById(R.id.textView5);
-        top_anim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        btm_anim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        bottomNavigation();
+    }
+    private void bottomNavigation() {
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
 
-        imageView.setAnimation(top_anim);
-        textlogo.setAnimation(btm_anim);
-        texttagline.setAnimation(btm_anim);
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
+        bottomNavigationView.setOnNavigationItemSelectedListener
+                (new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment selectedFragment = null;
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(i);
-            }
-        },3000);
+
+                        switch (item.getItemId()) {
+
+                            case R.id.action_home:
+                                selectedFragment = HomeFragment.homeFragment();
+                                break;
+                            case R.id.action_add:
+                                selectedFragment = AddFragment.addFragment();
+                                break;
+                            case R.id.action_search:
+                                selectedFragment = ScarchFragment.scarchFragment();
+                                break;
+                            case R.id.action_history:
+                                selectedFragment = HistoryFragment.historyFragment();
+                                break;
+                        }
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.commit();
+                        return true;
+                    }
+                });
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout,  HomeFragment.homeFragment());
+        transaction.commit();
     }
 }

@@ -10,6 +10,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.e.toolsharing.activities.LoginActivity;
+
 public class SplashActivity extends AppCompatActivity {
 Animation top_anim,btm_anim;
 ImageView imageView;
@@ -29,7 +31,7 @@ TextView textlogo,texttagline;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashActivity.this,LoginActivity.class);
+                Intent i = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         },3000);
