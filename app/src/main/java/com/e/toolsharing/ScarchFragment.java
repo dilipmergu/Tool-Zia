@@ -8,3 +8,4 @@ public class ScarchFragment extends Fragment {
         return fragment;
     }
 }
+
