@@ -58,7 +58,7 @@ public class ToolDetailsActivity extends AppCompatActivity {
          tv_name.setText(" :"+getIntent().getStringExtra("name"));
          tv_status.setText(" :"+getIntent().getStringExtra("status"));
          tv_price.setText(" :"+getIntent().getStringExtra("price"));
-         tv_reviews.setText(" :"+getIntent().getStringExtra("category"));
+         tv_reviews.setText(" :*****");
 
          Glide.with(ToolDetailsActivity.this).load(getIntent().getStringExtra("image")).into(image_view);
          btn_book=(Button)findViewById(R.id.btn_book);
