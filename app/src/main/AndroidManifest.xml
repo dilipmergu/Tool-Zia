@@ -13,6 +13,8 @@
         <activity android:name=".activities.RegistrationActivity"></activity>
         <activity android:name=".myprofile"></activity>
         <activity android:name=".activities.LoginActivity" />
+
+        <activity android:name=".activities.MyToolDetailsActivity"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
