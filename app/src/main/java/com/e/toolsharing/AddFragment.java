@@ -174,6 +174,7 @@ public class AddFragment extends Fragment {
         saveCurrentTime = currentTime.format(calendar.getTime());
 
         productRandomKey = saveCurrentDate + saveCurrentTime;
+        productRandomKey = productRandomKey.replace(".","");
 
 
         final StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
@@ -238,7 +239,6 @@ public class AddFragment extends Fragment {
         productMap.put("status", status);
         productMap.put("posted_by", session);
         productMap.put("booked_by","");
-
         ProductsRef.child(productRandomKey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
