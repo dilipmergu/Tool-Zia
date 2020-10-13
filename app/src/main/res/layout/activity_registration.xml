@@ -5,7 +5,6 @@
     android:background="#E2F2FA"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
 
     android:layout_width="match_parent"
@@ -143,39 +142,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
     <LinearLayout
+        android:layout_width="371dp"
+        android:layout_height="75dp"
         android:layout_margin="15dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/image_view"
+            android:layout_width="81dp"
+            android:layout_height="80dp"
             android:scaleType="fitXY"
-            android:src="@drawable/select_product_image"
-            android:layout_width="10dp"
-            android:layout_height="80dp"/>
-
+            android:src="@drawable/select_product_image" />
 
 
         <Button
             android:id="@+id/btn_img_upload"
-            android:text="Upload Photo"
-            android:layout_gravity="center"
-            android:textColor="#131212"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:textAllCaps="false"
-            android:textSize="13dp"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:backgroundTint="#9FF1A2" />
-
-
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#9FF1A2"
+            android:text="Upload Photo"
+            android:textAllCaps="false"
+            android:textColor="#131212"
+            android:textSize="13dp" />
 
 
     </LinearLayout>
-
 
     <Button
         android:id="@+id/btn_register"

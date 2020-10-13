@@ -13,7 +13,6 @@ import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.e.toolsharing.R;
-import com.e.toolsharing.activities.MyToolDetailsActivity;
 import com.e.toolsharing.models.HomeDataPojo;
 
 import java.util.List;

@@ -22,6 +22,9 @@ public class ToolDetailsActivity extends AppCompatActivity {
     TextView tv_name,tv_status,tv_price,tv_reviews;
     ImageView image_view;
     Button btn_book;
+
+
+
     SharedPreferences sharedPreferences;
     String session;
     String name,price,status,category,image,pid,posted_by,booked_by,date,time;
