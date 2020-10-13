@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    android:id="@+id/tlContactDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView android:id="@+id/image_view"
+        android:layout_width="170dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:layout_height="120dp" />
+
+    <TableRow
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginLeft="50dp"
+            android:textColor="#111111"
+            android:layout_weight="0.5"
+            android:text="Name " />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:textColor="#111111 "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+
+    <TableRow
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginLeft="50dp"
+            android:textColor="#111111"
+            android:layout_weight="0.5"
+            android:text="Status  " />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:textColor="#111111 "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginLeft="50dp"
+            android:textColor="#111111"
+            android:layout_weight="0.5"
+            android:text="Price " />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:textColor="#111111 "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="0.5"
+            android:padding="5dp"
+            android:text="Catagory  "
+            android:textColor="#111111" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:textColor="#111111 "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+
+
+
+</TableLayout>
