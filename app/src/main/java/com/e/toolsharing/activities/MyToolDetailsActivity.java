@@ -48,10 +48,8 @@ public class MyToolDetailsActivity extends AppCompatActivity {
         tv_price.setText(" :"+getIntent().getStringExtra("price"));
         tv_category.setText(" :"+getIntent().getStringExtra("category"));
 
+
         Glide.with(MyToolDetailsActivity.this).load(getIntent().getStringExtra("image")).into(image_view);
-
-
-
 
     }
 
