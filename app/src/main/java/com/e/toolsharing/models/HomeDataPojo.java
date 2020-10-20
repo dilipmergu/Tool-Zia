@@ -58,6 +58,22 @@ public class HomeDataPojo {
         this.price = price;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -82,7 +98,10 @@ public class HomeDataPojo {
         this.booked_by = booked_by;
     }
 
-    public HomeDataPojo(String pid, String date, String time, String image, String name, String category, String price, String status, String posted_by, String booked_by) {
+    private String pid;
+    private String date;
+
+    public HomeDataPojo(String pid, String date, String time, String image, String name, String category, String price, String desc, String condition, String status, String posted_by, String booked_by) {
         this.pid = pid;
         this.date = date;
         this.time = time;
@@ -90,18 +109,20 @@ public class HomeDataPojo {
         this.name = name;
         this.category = category;
         this.price = price;
+        this.desc = desc;
+        this.condition = condition;
         this.status = status;
         this.posted_by = posted_by;
         this.booked_by = booked_by;
     }
 
-    private String pid;
-    private String date;
     private String time;
     private String image;
     private String name;
     private String category;
     private String price;
+    private String desc;
+    private String condition;
     private String status;
     private String posted_by;
     private String booked_by;
