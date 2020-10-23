@@ -11,8 +11,8 @@
         android:title="My Tools Posted" />
 
     <item
-        android:id="@+id/my_request"
-        android:title="My Request" />
+        android:id="@+id/my_fav_tools"
+        android:title="My Favourite Tools " />
 
     <item
         android:id="@+id/change_pwd"

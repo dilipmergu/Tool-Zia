@@ -6,24 +6,25 @@
     app:cardUseCompatPadding="true"
     app:elevation="0dp"
     android:id="@+id/cvParent"
+    android:backgroundTint="#FFFFFF"
     app:cardCornerRadius="5dp"
     android:layout_height="wrap_content"
     android:layout_margin="0dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_uname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="name"
+            android:text="Paru"
+            android:visibility="gone"
             android:textColor="#E61717"
+            android:layout_gravity="right"
             android:textSize="13dp"
-            android:visibility="gone" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <ImageView android:id="@+id/image_view"
             android:layout_width="150dp"
@@ -32,15 +33,44 @@
 
         <TextView
             android:id="@+id/tv_cname"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/image_view"
             android:gravity="center_horizontal"
             android:textSize="12sp"
             android:textColor="#111111"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"
             android:fontFamily="sans-serif-medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    </LinearLayout>
+        <RatingBar
+            android:id="@+id/tv_rating"
+            android:layout_below="@+id/tv_cname"
+            style="@style/customRatingBar"
+            android:layout_gravity="center"
+            android:paddingTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:rating="4.5"
+            android:transformPivotX="0dp"
+            android:transformPivotY="0dp"
+            android:isIndicator="true"
+            android:max="5" />
+
+        <ImageView android:id="@+id/img_fav"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_fav"
+            android:layout_below="@+id/tv_cname"
+            android:layout_width="18dp"
+            android:scaleType="fitXY"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="8dp"
+            android:layout_height="18dp" />
+
+
+
+
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
