@@ -17,6 +17,8 @@
         <activity android:name=".activities.MyToolsActivity" />
         <activity android:name=".activities.MyProfileActivity" />
         <activity android:name=".activities.ToolDetailsActivity" />
+        <activity android:name=".activities.MyToolDetailsActivity"/>
+        <activity android:name=".activities.EditToolActivity"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

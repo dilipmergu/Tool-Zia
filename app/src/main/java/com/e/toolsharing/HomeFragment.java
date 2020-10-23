@@ -1,5 +1,6 @@
 package com.e.toolsharing;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.e.toolsharing.activities.LoginActivity;
+import com.e.toolsharing.activities.MyFavouriteActivity;
 import com.e.toolsharing.activities.MyProfileActivity;
 import com.e.toolsharing.activities.MyToolsActivity;
 import com.e.toolsharing.activities.ToolDetailsActivity;
@@ -30,9 +32,16 @@ import com.e.toolsharing.models.HomeDataPojo;
 import com.e.toolsharing.models.HomePojo;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -44,6 +53,8 @@ public class HomeFragment extends Fragment {
     TextView product_name,tv_uname;
     SharedPreferences sharedPreferences;
     String session;
+    private ProgressDialog loadingBar;
+    HomeDataPojo homeDataPojo;
     View view;
     public static HomeFragment homeFragment() {
         HomeFragment fragment = new HomeFragment();
@@ -80,12 +91,23 @@ public class HomeFragment extends Fragment {
                 product_name.setText(homeDataPojo.getName().toString());
                 tv_uname.setText(homeDataPojo.getPosted_by().toString());
                 Glide.with(getActivity()).load(homeDataPojo.getImage().toString()).into(image_view);
+                ImageView img_fav=(ImageView) v.findViewById(R.id.img_fav);
+                img_fav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        favList();
+
+
+                    }
+                });
                 image_view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getActivity(), ToolDetailsActivity.class);
                         intent.putExtra("name", homeDataPojo.getName().toString());
                         intent.putExtra("price", homeDataPojo.getPrice().toString());
+                        intent.putExtra("description", homeDataPojo.getDesc().toString());
+                        intent.putExtra("condition", homeDataPojo.getCondition().toString());
                         intent.putExtra("status", homeDataPojo.getStatus().toString());
                         intent.putExtra("category", homeDataPojo.getCategory().toString());
                         intent.putExtra("image", homeDataPojo.getImage().toString());
@@ -138,8 +160,8 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), MyToolsActivity.class));
                 return true;
 
-            case R.id.my_request:
-                Toast.makeText(getActivity(), "my_request", Toast.LENGTH_SHORT).show();
+            case R.id.my_fav_tools:
+                startActivity(new Intent(getContext(), MyFavouriteActivity.class));
                 return true;
 
             case R.id.change_pwd:
@@ -155,5 +177,65 @@ public class HomeFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public  void favList(){
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (!(dataSnapshot.child("Fav Products").child(homeDataPojo.getPid().toString()).exists()))
+                {
+                    HashMap<String, Object> productMap = new HashMap<>();
+                    productMap.put("pid", homeDataPojo.getPid().toString());
+                    productMap.put("date", homeDataPojo.getDate().toString());
+                    productMap.put("time", homeDataPojo.getTime().toString());
+                    productMap.put("image", homeDataPojo.getImage().toString());
+                    productMap.put("name", homeDataPojo.getName().toString());
+                    productMap.put("category", homeDataPojo.getCategory().toString());
+                    productMap.put("price", homeDataPojo.getPrice().toString());
+                    productMap.put("desc", homeDataPojo.getDesc().toString());
+                    productMap.put("condition", homeDataPojo.getCondition().toString());
+                    productMap.put("status", homeDataPojo.getStatus().toString());
+                    productMap.put("posted_by", homeDataPojo.getPosted_by().toString());
+                    productMap.put("fav_list", session);
+                    productMap.put("booked_by","");
+
+
+                    RootRef.child("Fav Products").child(homeDataPojo.getPid().toString()).updateChildren(productMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(getActivity(), "Add to favourite successfully.", Toast.LENGTH_SHORT).show();
+                                        loadingBar.dismiss();
+                                    }
+                                    else
+                                    {
+                                        loadingBar.dismiss();
+                                        Toast.makeText(getContext(), "Network Error: Please try again after some time...", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+
+                            });
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "This " + homeDataPojo.getPid().toString() + " already exists.", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
