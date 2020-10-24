@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.e.toolsharing.activities.ChangePasswordActivity;
 import com.e.toolsharing.activities.LoginActivity;
 import com.e.toolsharing.activities.MyFavouriteActivity;
 import com.e.toolsharing.activities.MyProfileActivity;
@@ -70,6 +71,9 @@ public class HomeFragment extends Fragment {
 
         sharedPreferences =getActivity().getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("user_name", "def-val");
+        loadingBar = new ProgressDialog(getActivity());
+
+
 
 
         gridview = (GridView) view.findViewById(R.id.gridview);
@@ -87,11 +91,12 @@ public class HomeFragment extends Fragment {
                 product_name = (TextView) v.findViewById(R.id.tv_cname);
                 tv_uname = (TextView) v.findViewById(R.id.tv_uname);
 
-                final HomeDataPojo homeDataPojo = (HomeDataPojo) model;
+                homeDataPojo = (HomeDataPojo) model;
                 product_name.setText(homeDataPojo.getName().toString());
                 tv_uname.setText(homeDataPojo.getPosted_by().toString());
                 Glide.with(getActivity()).load(homeDataPojo.getImage().toString()).into(image_view);
                 ImageView img_fav=(ImageView) v.findViewById(R.id.img_fav);
+
                 img_fav.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -165,7 +170,7 @@ public class HomeFragment extends Fragment {
                 return true;
 
             case R.id.change_pwd:
-                Toast.makeText(getActivity(), "change_pwd", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), ChangePasswordActivity.class));
                 return true;
 
             case R.id.logout:
