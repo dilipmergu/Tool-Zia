@@ -27,9 +27,11 @@ import com.google.firebase.database.ValueEventListener;
 public class MyProfileActivity extends AppCompatActivity {
     Button btn_update_profile, btn_logout;
     EditText et_name, et_phone, et_pwd, et_username,et_email;
+    DatabaseReference dbArtists;
+    Users users;
     ImageView image_view;
     SharedPreferences sharedPreferences;
-    String session,imageURI;
+    String session;
     ProgressDialog loadingBar;
     private String parentDbName = "Registered_users";
     @Override
@@ -68,7 +70,6 @@ public class MyProfileActivity extends AppCompatActivity {
                     et_phone.setText(usersData.getPhone());
                     et_pwd.setText(usersData.getPassword());
                     et_username.setText(usersData.getUsername());
-                    imageURI = usersData.getImage();
                     Glide.with(MyProfileActivity.this).load(usersData.getImage()).into(image_view);
 
                 }
@@ -83,8 +84,8 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(parentDbName).child(session);
-                Users users=new Users(et_name.getText().toString(),et_phone.getText().toString(),et_pwd.getText().toString(),session,et_email.getText().toString(),imageURI);
+                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference(parentDbName).child(session);
+                Users users=new Users(et_name.getText().toString(),et_phone.getText().toString(),et_pwd.getText().toString(),session,et_email.getText().toString(),"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQE8MJkjXHhwTEuZMhh0HdqsETJ4Uu_BjCITg&usqp=CAU");
                 databaseReference.setValue(users);
                 Toast.makeText(MyProfileActivity.this, "Profile Updated Succussfully", Toast.LENGTH_SHORT).show();
                 finish();
@@ -92,7 +93,39 @@ public class MyProfileActivity extends AppCompatActivity {
         });
 
 
+        /*progressDialog=new ProgressDialog(MyProfileActivity.this);
+        progressDialog.setTitle("Please Wait data is beaging Loaded");
+        progressDialog.show();
+        Query query = FirebaseDatabase.getInstance().getReference("Registered_users")
+                .orderByChild("username")
+                .equalTo(session);
+        query.addListenerForSingleValueEvent(valueEventListener);*/
+
     }
+    /* ValueEventListener valueEventListener = new ValueEventListener() {
+         @Override
+         public void onDataChange(DataSnapshot dataSnapshot) {
+             progressDialog.dismiss();
+             //user.clear();
+             if (dataSnapshot.exists()) {
+                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                     Users user = snapshot.getValue(Users.class);
+                    // homeDataPojos.add(artist);
+                 }
+                 Toast.makeText(MyProfileActivity.this, ""+users.getName(), Toast.LENGTH_SHORT).show();
+                 //tv_name.setText(users.getName());
+
+             }
+             else {
+                 Toast.makeText(MyProfileActivity.this, "No data Found", Toast.LENGTH_SHORT).show();
+             }
+         }
+         @Override
+         public void onCancelled(DatabaseError databaseError) {
+             progressDialog.dismiss();
+
+         }
+     };*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -103,5 +136,4 @@ public class MyProfileActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }
