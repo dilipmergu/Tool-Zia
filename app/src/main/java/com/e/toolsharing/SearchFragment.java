@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ScarchFragment extends Fragment {
+public class SearchFragment extends Fragment {
     GridView gridview;
     List<HomeDataPojo> a1;
     ProgressDialog progressDialog;
@@ -37,8 +37,8 @@ public class ScarchFragment extends Fragment {
     View view;
 
 
-    public static ScarchFragment scarchFragment() {
-        ScarchFragment fragment = new ScarchFragment();
+    public static SearchFragment scarchFragment() {
+        SearchFragment fragment = new SearchFragment();
         return fragment;
     }
 

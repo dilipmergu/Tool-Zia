@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                                 selectedFragment = AddFragment.addFragment();
                                 break;
                             case R.id.action_search:
-                                selectedFragment = ScarchFragment.scarchFragment();
+                                selectedFragment = SearchFragment.scarchFragment();
                                 break;
                             case R.id.action_history:
                                 selectedFragment = HistoryFragment.historyFragment();
