@@ -1,6 +1,5 @@
 package com.e.toolsharing;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +22,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.e.toolsharing.activities.Utils;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.e.toolsharing.activities.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,7 +41,7 @@ import java.util.HashMap;
 import static android.app.Activity.RESULT_OK;
 
 public class AddFragment extends Fragment {
-    EditText et_name,et_status,et_price,et_category;
+    EditText et_name,et_status,et_price,et_category,et_desc;
     ImageView image_view;
     Button btn_submit;
     private static final int GalleryPick = 1;
@@ -50,10 +50,10 @@ public class AddFragment extends Fragment {
     private StorageReference ProductImagesRef;
     private DatabaseReference ProductsRef;
     private ProgressDialog loadingBar;
-    String name,status,price,category,saveCurrentDate, saveCurrentTime;
+    String name,status,price,category,saveCurrentDate, saveCurrentTime,description,condition;
     SharedPreferences sharedPreferences;
     String session;
-    Spinner spin_status,spin_category;
+    Spinner spin_status,spin_category,spin_condition;
 
     View view;
 
@@ -78,9 +78,10 @@ public class AddFragment extends Fragment {
 
         et_name=(EditText)view.findViewById(R.id.et_name);
         spin_status=(Spinner)view.findViewById(R.id.spin_status);
-        // et_status=(EditText)view.findViewById(R.id.et_status);
+        et_desc=(EditText)view.findViewById(R.id.et_desc);
         et_price=(EditText)view.findViewById(R.id.et_price);
         spin_category=(Spinner)view.findViewById(R.id.spin_category);
+        spin_condition=(Spinner)view.findViewById(R.id.spin_condition);
         // et_category=(EditText)view.findViewById(R.id.et_category);
         image_view=(ImageView)view.findViewById(R.id.image_view);
 
@@ -129,8 +130,9 @@ public class AddFragment extends Fragment {
         name=et_name.getText().toString();
         status=spin_status.getSelectedItem().toString();
         price=et_price.getText().toString();
+        condition=spin_condition.getSelectedItem().toString();
+        description=et_desc.getText().toString();
         category=spin_category.getSelectedItem().toString();
-
 
 
         if (ImageUri == null)
@@ -141,13 +143,23 @@ public class AddFragment extends Fragment {
         {
             Toast.makeText(getActivity(), "Please write product name...", Toast.LENGTH_SHORT).show();
         }
-        else if (spin_status.getSelectedItem().toString().equals("Please Choose Tool Status"))
+        else if (spin_status.getSelectedItem().toString().equals("Please Choose Tool `Status`"))
         {
             Toast.makeText(getActivity(), "Please Choose product Status...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(price))
         {
             Toast.makeText(getActivity(), "Please write product Price...", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (TextUtils.isEmpty(description))
+        {
+            Toast.makeText(getActivity(), "Please write product Description...", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (spin_condition.getSelectedItem().toString().equals("Tool Condition"))
+        {
+            Toast.makeText(getActivity(), "Please Choose tool condition...", Toast.LENGTH_SHORT).show();
         }
 
         else if (spin_category.getSelectedItem().toString().equals("Please Choose Tool Category"))
@@ -236,6 +248,8 @@ public class AddFragment extends Fragment {
         productMap.put("name", name);
         productMap.put("category", category);
         productMap.put("price", price);
+        productMap.put("desc", description);
+        productMap.put("condition", condition);
         productMap.put("status", status);
         productMap.put("posted_by", session);
         productMap.put("booked_by","");
@@ -247,6 +261,9 @@ public class AddFragment extends Fragment {
                     {
                         if (task.isSuccessful())
                         {
+                          /*  Intent intent = new Intent(getActivity(), AdminCategoryActivity.class);
+                            startActivity(intent);*/
+
                             loadingBar.dismiss();
                             Toast.makeText(getActivity(), "Product is added successfully..", Toast.LENGTH_SHORT).show();
                         }
