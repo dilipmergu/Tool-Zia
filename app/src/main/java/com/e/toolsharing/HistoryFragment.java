@@ -2,13 +2,11 @@ package com.e.toolsharing;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -22,11 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.e.toolsharing.activities.MyProfileActivity;
 import com.e.toolsharing.activities.Utils;
-import com.e.toolsharing.adapters.HistoryAdapter;
 import com.e.toolsharing.models.HomeDataPojo;
-import com.e.toolsharing.models.HomePojo;
 
 import java.util.ArrayList;
 import java.util.List;
