@@ -58,11 +58,18 @@ public class MyToolsAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(cnt, MyToolDetailsActivity.class);
-                intent.putExtra("name", ar.get(pos).getName());
-                intent.putExtra("price", ar.get(pos).getPrice());
-                intent.putExtra("status", ar.get(pos).getStatus());
-                intent.putExtra("category", ar.get(pos).getCategory());
-                intent.putExtra("image", ar.get(pos).getImage());
+                intent.putExtra("name", ar.get(pos).getName().toString());
+                intent.putExtra("price", ar.get(pos).getPrice().toString());
+                intent.putExtra("description", ar.get(pos).getDesc().toString());
+                intent.putExtra("condition", ar.get(pos).getCondition().toString());
+                intent.putExtra("status", ar.get(pos).getStatus().toString());
+                intent.putExtra("category", ar.get(pos).getCategory().toString());
+                intent.putExtra("image", ar.get(pos).getImage().toString());
+                intent.putExtra("pid", ar.get(pos).getPid().toString());
+                intent.putExtra("posted_by", ar.get(pos).getPosted_by().toString());
+                intent.putExtra("booked_by", "");
+                intent.putExtra("date", ar.get(pos).getDate().toString());
+                intent.putExtra("time", ar.get(pos).getTime().toString());
                 cnt.startActivity(intent);
             }
         });
