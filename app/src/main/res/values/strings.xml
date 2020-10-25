@@ -15,7 +15,7 @@
 
     <string-array name="category">
         <item>Please Choose Tool Category</item>
-        <item>Cutturs</item>
+        <item>Cutters</item>
         <item>Shapers</item>
         <item>Pointers</item>
         <item>Others</item>

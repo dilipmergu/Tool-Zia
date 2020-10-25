@@ -1,8 +1,11 @@
 package com.e.toolsharing.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,13 +13,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.bumptech.glide.Glide;
-import com.e.toolsharing.R;
-import com.e.toolsharing.models.MyToolsPojo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.e.toolsharing.R;
+import com.e.toolsharing.models.MyToolsPojo;
+import com.e.toolsharing.models.Users;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,11 +38,14 @@ public class EditToolActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_tool);
+        getSupportActionBar().setTitle("Edit Tool");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sharedPreferences =getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("user_name", "def-val");
 
         status=getResources().getStringArray(R.array.status);
-        tool_condition=getResources().getStringArray(R.array.category);
+        tool_condition=getResources().getStringArray(R.array.condition);
 
 
         et_name=(EditText)findViewById(R.id.et_name);
@@ -77,5 +82,15 @@ public class EditToolActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

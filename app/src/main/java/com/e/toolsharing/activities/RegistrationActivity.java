@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.e.toolsharing.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,7 +30,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.e.toolsharing.MainActivity;
+import com.e.toolsharing.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class RegistrationActivity  extends AppCompatActivity {
@@ -127,11 +130,11 @@ public class RegistrationActivity  extends AppCompatActivity {
     }
     private void ValidateProductData()
     {
-         name = et_name.getText().toString();
-         phone = et_phone.getText().toString();
-         email = et_email.getText().toString();
-         password = et_PWD.getText().toString();
-         username = et_uname.getText().toString();
+        name = et_name.getText().toString();
+        phone = et_phone.getText().toString();
+        email = et_email.getText().toString();
+        password = et_PWD.getText().toString();
+        username = et_uname.getText().toString();
 
         if (ImageUri == null)
         {
@@ -280,6 +283,141 @@ public class RegistrationActivity  extends AppCompatActivity {
         });
 
     }
+
+    /*private void SaveProductInfoToDatabase()
+    {
+        HashMap<String, Object> userdataMap = new HashMap<>();
+        userdataMap.put("name", name);
+        userdataMap.put("phone", phone);
+        userdataMap.put("email", email);
+        userdataMap.put("username", username);
+        userdataMap.put("password", password);
+        userdataMap.put("image", downloadImageUrl);
+
+
+        ProductsRef.updateChildren(userdataMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            Intent intent=new Intent(RegistrationActivity.this,LoginActivity.class);
+                            startActivity(intent);
+
+                            loadingBar.dismiss();
+                            Toast.makeText(RegistrationActivity.this, "Account is Created successfully..", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            loadingBar.dismiss();
+                            String message = task.getException().toString();
+                            Toast.makeText(RegistrationActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }*/
+    /*private void CreateAccount() {
+
+        String name = et_name.getText().toString();
+        String phone = et_phone.getText().toString();
+        String email = et_email.getText().toString();
+        String password = et_PWD.getText().toString();
+        String username = et_uname.getText().toString();
+
+        if (TextUtils.isEmpty(name))
+        {
+            Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(email))
+        {
+            Toast.makeText(this, "Please write your Email...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(phone))
+        {
+            Toast.makeText(this, "Please write your phone number...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(username))
+        {
+            Toast.makeText(this, "Please Choose your Username...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(password))
+        {
+            Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            loadingBar.setTitle("Create Account");
+            loadingBar.setMessage("Please wait, while we are checking the credentials.");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+
+            ValidatepEmail(name, phone,email,username,password);
+        }
+    }
+
+    private void ValidatepEmail(final String name, final String phone, final String email, final String username, final String password) {
+
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (!(dataSnapshot.child("Registered_users").child(username).exists()))
+                {
+                    HashMap<String, Object> userdataMap = new HashMap<>();
+                    userdataMap.put("name", name);
+                    userdataMap.put("phone", phone);
+                    userdataMap.put("email", email);
+                    userdataMap.put("username", username);
+                    userdataMap.put("password", password);
+
+
+                    RootRef.child("Registered_users").child(username).updateChildren(userdataMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(RegistrationActivity.this, "Congratulations, your account has been created.", Toast.LENGTH_SHORT).show();
+                                        loadingBar.dismiss();
+
+                                       *//* Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                                        startActivity(intent);*//*
+                                        finish();
+                                    }
+                                    else
+                                    {
+                                        loadingBar.dismiss();
+                                        Toast.makeText(RegistrationActivity.this, "Network Error: Please try again after some time...", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+                else
+                {
+                    Toast.makeText(RegistrationActivity.this, "This " + username + " already exists.", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                    Toast.makeText(RegistrationActivity.this, "Please try again using another Email.", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(RegistrationActivity.this, RegistrationActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }*/
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
