@@ -74,7 +74,7 @@ public class ToolDetailsActivity extends AppCompatActivity {
         Glide.with(ToolDetailsActivity.this).load(getIntent().getStringExtra("image")).into(image_view);
 
         btn_book=(Button)findViewById(R.id.btn_book);
-        if (getIntent().getStringExtra("posted_by").equals(session)) {
+        if (getIntent().getStringExtra("posted_by").equals(session)||getIntent().getStringExtra("status").equals("Not Available")) {
             btn_book.setVisibility(View.INVISIBLE);
         }
         else  {
