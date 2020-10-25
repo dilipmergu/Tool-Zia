@@ -47,7 +47,7 @@ public class MyFavouriteActivity extends AppCompatActivity {
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Please Wait data is being Loaded");
         progressDialog.show();
-        Query query = FirebaseDatabase.getInstance().getReference("Fav Products")
+        Query query = FirebaseDatabase.getInstance().getReference("Fav Products").child(session)
                 .orderByChild("fav_list")
                 .equalTo(session);
         query.addListenerForSingleValueEvent(valueEventListener);
