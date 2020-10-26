@@ -130,10 +130,13 @@ public class RegistrationActivity  extends AppCompatActivity {
     }
     private void ValidateProductData()
     {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String passwordPattern = "^(?=.[A-Za-z])(?=.\\d)[A-Za-z\\d]{6,}$";
+        String phonepattern = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$";
         name = et_name.getText().toString();
-        phone = et_phone.getText().toString();
-        email = et_email.getText().toString();
-        password = et_PWD.getText().toString();
+        phone = et_phone.getText().toString().trim();
+        email = et_email.getText().toString().trim();
+        password = et_PWD.getText().toString().trim();
         username = et_uname.getText().toString();
 
         if (ImageUri == null)
@@ -159,6 +162,16 @@ public class RegistrationActivity  extends AppCompatActivity {
         else if (TextUtils.isEmpty(password))
         {
             Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
+        }
+        else if (!email.matches(emailPattern)){
+            Toast.makeText(this,"Please write valid email address",Toast.LENGTH_SHORT).show();
+        }
+        else if (!password.matches(passwordPattern)){
+            Toast.makeText(this,"please write password of 6 chars with alteast one letter and number",Toast.LENGTH_SHORT).show();
+
+        }
+        else if(!phone.matches(phonepattern)){
+            Toast.makeText(this,"please write 10 digit phone number in the 123 123 1234 format",Toast.LENGTH_SHORT).show();
         }
 
         else
