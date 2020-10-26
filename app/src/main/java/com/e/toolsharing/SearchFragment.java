@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SearchFragment extends Fragment {
+public class   SearchFragment extends Fragment {
     GridView gridview;
     List<HomeDataPojo> a1;
     ProgressDialog progressDialog;
