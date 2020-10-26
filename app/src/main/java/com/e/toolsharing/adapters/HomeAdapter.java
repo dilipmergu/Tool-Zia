@@ -97,7 +97,7 @@ public class HomeAdapter extends BaseAdapter {
                 favList(ar.get(pos).getPid().toString(),ar.get(pos).getDate().toString(),ar.get(pos).getTime().toString()
                         ,ar.get(pos).getImage().toString(),ar.get(pos).getName().toString()
                         ,ar.get(pos).getCategory().toString(),ar.get(pos).getPrice().toString(),ar.get(pos).getDesc().toString(),
-                        ar.get(pos).getCondition().toString(),ar.get(pos).getStatus().toString());
+                        ar.get(pos).getCondition().toString(),ar.get(pos).getStatus().toString(),ar.get(pos).getPosted_by());
             }
         });
 
@@ -107,7 +107,7 @@ public class HomeAdapter extends BaseAdapter {
 
     private DatabaseReference ProductsRef;
     public  void favList(final String id,final String date,final String time,final String image
-            ,final String name,final String category,final String price,final String desc,final String condition,final String status){
+            ,final String name,final String category,final String price,final String desc,final String condition,final String status,final String posted_by){
         loadingBar=new ProgressDialog(cnt);
         loadingBar.setTitle("Please Wait data is being Loaded");
         loadingBar.show();
@@ -132,6 +132,7 @@ public class HomeAdapter extends BaseAdapter {
                     productMap.put("condition", condition);
                     productMap.put("status", status);
                     productMap.put("fav_list", session);
+                    productMap.put("posted_by", posted_by);
                     productMap.put("booked_by","");
 
 
