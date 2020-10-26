@@ -131,7 +131,7 @@ public class RegistrationActivity  extends AppCompatActivity {
     private void ValidateProductData()
     {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        String passwordPattern = "^(?=.[A-Za-z])(?=.\\d)[A-Za-z\\d]{6,}$";
+        String passwordPattern = "(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
         String phonepattern = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$";
         name = et_name.getText().toString();
         phone = et_phone.getText().toString().trim();
