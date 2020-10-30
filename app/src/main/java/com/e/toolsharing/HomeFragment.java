@@ -20,8 +20,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.e.toolsharing.activities.BookedToolsActivity;
 import com.e.toolsharing.activities.ChangePasswordActivity;
+import com.e.toolsharing.activities.GetDamagedToolsActivity;
 import com.e.toolsharing.activities.LoginActivity;
+import com.e.toolsharing.activities.MyBookedToolsActivity;
 import com.e.toolsharing.activities.MyFavouriteActivity;
 import com.e.toolsharing.activities.MyProfileActivity;
 import com.e.toolsharing.activities.MyToolsActivity;
@@ -128,6 +131,20 @@ public class HomeFragment extends Fragment {
             case R.id.my_fav_tools:
                 startActivity(new Intent(getContext(), MyFavouriteActivity.class));
                 return true;
+
+            case R.id.my_booked_tools:
+                startActivity(new Intent(getContext(), MyBookedToolsActivity.class));
+                return true;
+
+            case R.id.my_tools_booked:
+                startActivity(new Intent(getContext(), BookedToolsActivity.class));
+                return true;
+
+            case R.id.damaged_tool:
+                startActivity(new Intent(getContext(), GetDamagedToolsActivity.class));
+                return true;
+
+
 
             case R.id.change_pwd:
                 startActivity(new Intent(getContext(), ChangePasswordActivity.class));
