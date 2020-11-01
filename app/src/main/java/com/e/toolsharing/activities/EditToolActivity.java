@@ -76,7 +76,7 @@ public class EditToolActivity extends AppCompatActivity {
                         ,et_desc.getText().toString(),getIntent().getStringExtra("condition"),spin_status.getSelectedItem().toString(),session,getIntent().getStringExtra("booked_by"),""
                         ,getIntent().getStringExtra("date"),getIntent().getStringExtra("pid"),"","","");
                 databaseReference.setValue(edittools);
-                Toast.makeText(EditToolActivity.this, "Tool Updated Succussfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditToolActivity.this, "Tool Updated Successfully", Toast.LENGTH_SHORT).show();
                 finish();
 
             }
