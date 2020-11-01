@@ -73,8 +73,8 @@ public class EditToolActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(parentDbName).child(getIntent().getStringExtra("pid"));
                 MyToolsPojo edittools=new MyToolsPojo(getIntent().getStringExtra("time"),getIntent().getStringExtra("image"),et_name.getText().toString(),getIntent().getStringExtra("category"),et_price.getText().toString()
-                        ,et_desc.getText().toString(),getIntent().getStringExtra("condition"),spin_status.getSelectedItem().toString(),session,getIntent().getStringExtra("booked_by")
-                        ,getIntent().getStringExtra("date"),getIntent().getStringExtra("pid"));
+                        ,et_desc.getText().toString(),getIntent().getStringExtra("condition"),spin_status.getSelectedItem().toString(),session,getIntent().getStringExtra("booked_by"),""
+                        ,getIntent().getStringExtra("date"),getIntent().getStringExtra("pid"),"","","");
                 databaseReference.setValue(edittools);
                 Toast.makeText(EditToolActivity.this, "Tool Updated Succussfully", Toast.LENGTH_SHORT).show();
                 finish();
