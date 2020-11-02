@@ -4,7 +4,31 @@ package com.e.toolsharing.models;
 
 public class StatusUpdatePojo {
 
-    public StatusUpdatePojo(String pid, String date, String time, String image, String name, String category, String price, String desc, String condition, String status, String posted_by, String booked_by) {
+    public String getFrom_date() {
+        return from_date;
+    }
+
+    public void setFrom_date(String from_date) {
+        this.from_date = from_date;
+    }
+
+    public String getTo_date() {
+        return to_date;
+    }
+
+    public void setTo_date(String to_date) {
+        this.to_date = to_date;
+    }
+
+    public String getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(String total_price) {
+        this.total_price = total_price;
+    }
+
+    public StatusUpdatePojo(String pid, String date, String time, String image, String name, String category, String price, String desc, String condition, String status, String posted_by, String booked_by, String from_date, String to_date, String total_price) {
         this.pid = pid;
         this.date = date;
         this.time = time;
@@ -17,6 +41,9 @@ public class StatusUpdatePojo {
         this.status = status;
         this.posted_by = posted_by;
         this.booked_by = booked_by;
+        this.from_date=from_date;
+        this.to_date=to_date;
+        this.total_price=total_price;
     }
 
 
@@ -129,6 +156,9 @@ public class StatusUpdatePojo {
     private String status;
     private String posted_by;
     private String booked_by;
+    private String from_date;
+    private String to_date;
+    private String total_price;
 
 
     public StatusUpdatePojo()

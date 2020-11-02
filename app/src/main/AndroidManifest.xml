@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragment_history"></activity>
+        <activity android:name=".ToolReviewActivity"></activity>
+        <activity android:name=".adapters.BookedToolsAdapter" />
+        <activity android:name=".activities.BookedToolsActivity" />
+        <activity android:name=".activities.GetToolReviewsActivity" />
         <activity android:name=".activities.MyFavouriteActivity" />
         <activity android:name=".activities.ChangePasswordActivity" />
         <activity android:name=".MainActivity" />
