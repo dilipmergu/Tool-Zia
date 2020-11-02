@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView android:id="@+id/image_view"
+        android:visibility="gone"
+        android:layout_width="@dimen/_150sdp"
+        android:scaleType="fitXY"
+        android:layout_margin="@dimen/_20sdp"
+        android:layout_gravity="center"
+        android:layout_height="@dimen/_105sdp" />
+
+    <TextView
+        android:id="@+id/tv_cname"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="#111111"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_review"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="#111111"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:numStars="5"
+        android:stepSize="1.0" />
+
+</LinearLayout>
