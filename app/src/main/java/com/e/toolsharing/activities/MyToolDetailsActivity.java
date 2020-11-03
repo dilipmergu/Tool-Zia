@@ -81,20 +81,20 @@ public class MyToolDetailsActivity extends AppCompatActivity {
             }
         });
 
-//        btn_damage=(Button)findViewById(R.id.btn_damage);
-//        btn_damage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Intent intent=new Intent(MyToolDetailsActivity.this,ToolsDamageActivity.class);
-//                intent.putExtra("name",getIntent().getStringExtra("name"));
-//                intent.putExtra("image",getIntent().getStringExtra("image"));
-//                intent.putExtra("price",getIntent().getStringExtra("price"));
-//                intent.putExtra("booked_by", getIntent().getStringExtra("booked_by"));
-//                intent.putExtra("pid",getIntent().getStringExtra("pid"));
-//                startActivity(intent);
-//            }
-//        });
+        btn_damage=(Button)findViewById(R.id.btn_damage);
+        btn_damage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(MyToolDetailsActivity.this,ToolsDamageActivity.class);
+                intent.putExtra("name",getIntent().getStringExtra("name"));
+                intent.putExtra("image",getIntent().getStringExtra("image"));
+                intent.putExtra("price",getIntent().getStringExtra("price"));
+                intent.putExtra("booked_by", getIntent().getStringExtra("booked_by"));
+                intent.putExtra("pid",getIntent().getStringExtra("pid"));
+                startActivity(intent);
+            }
+        });
 
     }
 
