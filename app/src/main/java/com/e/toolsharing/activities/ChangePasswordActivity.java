@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -42,15 +43,28 @@ public class ChangePasswordActivity extends AppCompatActivity {
         btn_update=(Button)findViewById(R.id.btn_update);
         et_change_pass=(EditText)findViewById(R.id.et_change_pass);
 
+        final String passwordPattern = "(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
+
 
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(parentDbName).child(session).child("password");
-                databaseReference.setValue(et_change_pass.getText().toString());
-                Toast.makeText(ChangePasswordActivity.this, "Password Updated Succussfully", Toast.LENGTH_SHORT).show();
-                finish();
+                if (TextUtils.isEmpty(et_change_pass.getText().toString()))
+                {
+                    Toast.makeText(ChangePasswordActivity.this, "Please write your password...", Toast.LENGTH_SHORT).show();
+                }
+                else if (!(et_change_pass.getText().toString()).matches(passwordPattern)){
+                    Toast.makeText(ChangePasswordActivity.this,"please write password of 6 chars with alteast one letter and number",Toast.LENGTH_SHORT).show();
 
+                }
+                else {
+
+
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(parentDbName).child(session).child("password");
+                    databaseReference.setValue(et_change_pass.getText().toString());
+                    Toast.makeText(ChangePasswordActivity.this, "Password Updated Succussfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
     }

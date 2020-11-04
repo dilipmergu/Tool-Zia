@@ -67,10 +67,11 @@ public class MyToolsAdapter extends BaseAdapter {
                 intent.putExtra("image", ar.get(pos).getImage().toString());
                 intent.putExtra("pid", ar.get(pos).getPid().toString());
                 intent.putExtra("posted_by", ar.get(pos).getPosted_by().toString());
-                intent.putExtra("booked_by", "");
+                intent.putExtra("booked_by", ar.get(pos).getBooked_by().toString());
                 intent.putExtra("date", ar.get(pos).getDate().toString());
                 intent.putExtra("time", ar.get(pos).getTime().toString());
                 cnt.startActivity(intent);
+
             }
         });
 
