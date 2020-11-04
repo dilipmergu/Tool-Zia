@@ -86,6 +86,9 @@ public class HomeAdapter extends BaseAdapter {
                 intent.putExtra("booked_by", "");
                 intent.putExtra("date", ar.get(pos).getDate().toString());
                 intent.putExtra("time", ar.get(pos).getTime().toString());
+                intent.putExtra("from_date", ar.get(pos).getFrom_date().toString());
+                intent.putExtra("to_date", ar.get(pos).getTo_date().toString());
+                intent.putExtra("total_price", ar.get(pos).getTotal_price().toString());
                 cnt.startActivity(intent);
             }
         });
