@@ -67,7 +67,7 @@ public class MyBookedToolsAdapter extends BaseAdapter {
         }
         else
         {
-            tv_status.setText("Status : "+ar.get(pos).getApprove_by_owner());
+            tv_status.setText("Status : "+"Approved");
         }
 
         return obj2;

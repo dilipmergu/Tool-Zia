@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ToolReviewActivity"></activity>
-        <activity android:name=".adapters.BookedToolsAdapter" />
+        <activity android:name=".activities.ToolReviewActivity"></activity>
+        <activity android:name=".activities.HistoryToolDetailsActivity"/>
+        <activity android:name=".activities.GetDamagedToolsActivity"/>
         <activity android:name=".activities.BookedToolsActivity" />
+        <activity android:name=".activities.MyBookedToolsActivity"/>
+        <activity android:name=".activities.ToolsDamageActivity"/>
         <activity android:name=".activities.GetToolReviewsActivity" />
         <activity android:name=".activities.MyFavouriteActivity" />
         <activity android:name=".activities.ChangePasswordActivity" />
