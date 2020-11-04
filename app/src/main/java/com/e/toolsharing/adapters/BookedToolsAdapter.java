@@ -25,14 +25,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class BookedToolsAdapter extends BaseAdapter {
-List<MyToolsPojo> ar;
-private  String parentDbName = "Products";
-Context cnt;
+    List<MyToolsPojo> ar;
+    private  String parentDbName = "Products";
+    Context cnt;
 
-  public  BookedToolsAdapter(List<MyToolsPojo> ar, Context cnt){
-      this.ar = ar;
-      this.cnt = cnt;
-  }
+    public  BookedToolsAdapter(List<MyToolsPojo> ar, Context cnt){
+        this.ar = ar;
+        this.cnt = cnt;
+    }
     @Override
     public int getCount() {
         return ar.size();
@@ -66,32 +66,39 @@ Context cnt;
         tv_price.setText("price :"+ar.get(pos).getPrice());
 
         Button btn_accept = (Button)obj2.findViewById(R.id.btn_accept);
+        Button btn_reject=(Button)obj2.findViewById(R.id.btn_reject);
+        if (ar.get(pos).getDate().equals("Approved")){
+            btn_accept.setVisibility(android.view.View.INVISIBLE);
+        }
+        else if (ar.get(pos).getDate().equals("Rejected")){
+            btn_reject.setVisibility(android.view.View.INVISIBLE);
+        }
         btn_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(parentDbName).child(ar.get(pos).getPid());
                 MyToolsPojo edittools=new MyToolsPojo(ar.get(pos).getTime(),ar.get(pos).getImage(),ar.get(pos).getName(),ar.get(pos).getCategory(),ar.get(pos).getPrice()
-                ,ar.get(pos).getDesc(),ar.get(pos).getCondition(),ar.get(pos).getStatus(),ar.get(pos).getPosted_by(),ar.get(pos).getBooked_by()
-                ,ar.get(pos).getPosted_by(),"Approved",ar.get(pos).getPid(),ar.get(pos).getFrom_date(),ar.get(pos).getTo_date(),ar.get(pos).getPrice());
+                        ,ar.get(pos).getDesc(),ar.get(pos).getCondition(),ar.get(pos).getStatus(),ar.get(pos).getPosted_by(),ar.get(pos).getBooked_by()
+                        ,ar.get(pos).getPosted_by(),"Approved",ar.get(pos).getPid(),ar.get(pos).getFrom_date(),ar.get(pos).getTo_date(),ar.get(pos).getPrice());
                 databaseReference.setValue(edittools);
 
                 Toast.makeText(cnt,"Approved Successfully",Toast.LENGTH_SHORT).show();
             }
         });
 
-        Button btn_reject=(Button)obj2.findViewById(R.id.btn_reject);
+
         btn_reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
 
 
-                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(parentDbName).child(ar.get(pos).getPid());
-                 MyToolsPojo edittools= new MyToolsPojo(ar.get(pos).getTime(),ar.get(pos).getImage(),ar.get(pos).getName(),ar.get(pos).getCategory(),ar.get(pos).getPrice()
-                            ,ar.get(pos).getDesc(),ar.get(pos).getCondition(),ar.get(pos).getStatus(),ar.get(pos).getPosted_by(),ar.get(pos).getBooked_by()
-                            ,ar.get(pos).getDate(),"Rejected",ar.get(pos).getPid(),"","","");
-                 databaseReference.setValue(edittools);
+                DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(parentDbName).child(ar.get(pos).getPid());
+                MyToolsPojo edittools= new MyToolsPojo(ar.get(pos).getTime(),ar.get(pos).getImage(),ar.get(pos).getName(),ar.get(pos).getCategory(),ar.get(pos).getPrice()
+                        ,ar.get(pos).getDesc(),ar.get(pos).getCondition(),ar.get(pos).getStatus(),ar.get(pos).getPosted_by(),ar.get(pos).getBooked_by()
+                        ,ar.get(pos).getDate(),"Rejected",ar.get(pos).getPid(),"","","");
+                databaseReference.setValue(edittools);
 
-                 Toast.makeText(cnt,"This tool is Rejected",Toast.LENGTH_SHORT).show();
+                Toast.makeText(cnt,"This tool is Rejected",Toast.LENGTH_SHORT).show();
 
             }
         });

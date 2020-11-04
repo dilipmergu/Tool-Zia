@@ -3,6 +3,7 @@ package com.e.toolsharing.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -27,7 +28,7 @@ public class EditToolActivity extends AppCompatActivity {
     EditText et_name,et_price,et_desc;
     ImageView image_view;
     Spinner spin_status,spin_condition;
-    Button btn_update;
+    Button btn_update,btn_delete;
     private String parentDbName = "Products";
     SharedPreferences sharedPreferences;
     String session;
@@ -55,6 +56,7 @@ public class EditToolActivity extends AppCompatActivity {
         spin_condition=(Spinner)findViewById(R.id.spin_condition);
         image_view=(ImageView)findViewById(R.id.image_view);
         btn_update=(Button)findViewById(R.id.btn_update);
+        btn_delete=(Button)findViewById(R.id.btn_delete);
 
         et_name.setText(getIntent().getStringExtra("name"));
         et_price.setText(getIntent().getStringExtra("price"));
@@ -79,6 +81,15 @@ public class EditToolActivity extends AppCompatActivity {
                 Toast.makeText(EditToolActivity.this, "Tool Updated Successfully", Toast.LENGTH_SHORT).show();
                 finish();
 
+            }
+        });
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference(parentDbName).child(getIntent().getStringExtra("pid")).removeValue();
+                Toast.makeText(EditToolActivity.this, "Tool deleted Successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EditToolActivity.this,MyToolsActivity.class);
+                startActivity(intent);
             }
         });
 
