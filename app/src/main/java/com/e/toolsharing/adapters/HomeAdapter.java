@@ -34,7 +34,7 @@ public class HomeAdapter extends BaseAdapter {
     List<HomeDataPojo> ar;
     Context cnt;
     String session;
-
+    DatabaseReference RootRef,getfav;
     public HomeAdapter(Context cnt, List<HomeDataPojo> ar, String session) {
         this.ar = ar;
         this.cnt = cnt;
@@ -93,17 +93,52 @@ public class HomeAdapter extends BaseAdapter {
             }
         });
 
-        ImageView img_fav=(ImageView)obj2.findViewById(R.id.img_fav);
-        img_fav.setOnClickListener(new View.OnClickListener() {
+        final Boolean[] clicked = {true};
+
+        final ImageView img_fav=(ImageView)obj2.findViewById(R.id.img_fav);
+        RootRef = FirebaseDatabase.getInstance().getReference().child("Fav Products").child(session);
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                favList(ar.get(pos).getPid().toString(),ar.get(pos).getDate().toString(),ar.get(pos).getTime().toString()
-                        ,ar.get(pos).getImage().toString(),ar.get(pos).getName().toString()
-                        ,ar.get(pos).getCategory().toString(),ar.get(pos).getPrice().toString(),ar.get(pos).getDesc().toString(),
-                        ar.get(pos).getCondition().toString(),ar.get(pos).getStatus().toString(),ar.get(pos).getPosted_by());
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.hasChild(ar.get(pos).getPid())) {
+                    img_fav.setImageResource(R.drawable.ic_heart);
+                    clicked[0] = false;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
+        getfav =  FirebaseDatabase.getInstance().getReference();
+
+
+        img_fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if (clicked[0]) {
+                    img_fav.setImageResource(R.drawable.ic_heart);
+                    favList(ar.get(pos).getPid().toString(),ar.get(pos).getDate().toString(),ar.get(pos).getTime().toString()
+                            ,ar.get(pos).getImage().toString(),ar.get(pos).getName().toString()
+                            ,ar.get(pos).getCategory().toString(),ar.get(pos).getPrice().toString(),ar.get(pos).getDesc().toString(),
+                            ar.get(pos).getCondition().toString(),ar.get(pos).getStatus().toString(),ar.get(pos).getPosted_by());
+
+
+                    clicked[0] = false;
+                } else {
+                    getfav.child("Fav Products").child(session).child(ar.get(pos).getPid()).removeValue();
+                    Toast.makeText(cnt, "Remove from your favourite successfully.", Toast.LENGTH_SHORT).show();
+                    clicked[0] = true;
+                    img_fav.setImageResource(R.drawable.ic_fav);
+
+                }
+
+            }
+        });
         return obj2;
     }
     ProgressDialog loadingBar;

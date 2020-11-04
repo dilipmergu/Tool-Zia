@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tools</string>
+    <string name="app_name">Tool-Zia</string>
 
     <string-array name="status">
         <item>Please Choose Tool Status</item>
