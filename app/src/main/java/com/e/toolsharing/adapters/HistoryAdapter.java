@@ -13,7 +13,8 @@ import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.e.toolsharing.R;
-import com.e.toolsharing.activities.ToolDetailsActivity;
+import com.e.toolsharing.activities.HistoryToolDetailsActivity;
+import com.e.toolsharing.activities.ToolReviewActivity;
 import com.e.toolsharing.models.HomeDataPojo;
 
 import java.util.List;
@@ -53,11 +54,11 @@ public class HistoryAdapter extends BaseAdapter {
         TextView tv_cname = (TextView) obj2.findViewById(R.id.tv_cname);
         tv_cname.setText(ar.get(pos).getName());
 
-       CardView cvParent=(CardView)obj2.findViewById(R.id.cvParent);
+        CardView cvParent=(CardView)obj2.findViewById(R.id.cvParent);
         cvParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(cnt, ToolDetailsActivity.class);
+                Intent intent=new Intent(cnt, HistoryToolDetailsActivity.class);
                 intent.putExtra("name", ar.get(pos).getName().toString());
                 intent.putExtra("price", ar.get(pos).getPrice().toString());
                 intent.putExtra("description", ar.get(pos).getDesc().toString());
