@@ -4,8 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,14 +17,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.e.toolsharing.R;
 import com.e.toolsharing.models.StatusUpdatePojo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,7 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class ToolDetailsActivity extends AppCompatActivity {
-    TextView tv_name,tv_status,tv_price,tv_reviews,tv_desc,tv_condition,tv_category,tv_availability;
+    TextView tv_name,tv_status,tv_price,tv_reviews,tv_desc,tv_condition,tv_category,tv_availability,tv_phno;
     ImageView image_view;
     Button btn_book;
     SharedPreferences sharedPreferences;
@@ -83,12 +85,13 @@ public class ToolDetailsActivity extends AppCompatActivity {
         tv_name=(TextView)findViewById(R.id.tv_name);
         tv_status=(TextView)findViewById(R.id.tv_status);
         tv_price=(TextView)findViewById(R.id.tv_price);
-       // tv_reviews=(TextView)findViewById(R.id.tv_reviews);
+        tv_phno = (TextView)findViewById(R.id.tv_phno);
+        // tv_reviews=(TextView)findViewById(R.id.tv_reviews);
         tv_desc=(TextView)findViewById(R.id.tv_desc);
         tv_condition=(TextView)findViewById(R.id.tv_condition);
         image_view=(ImageView)findViewById(R.id.image_view);
         tv_category = (TextView) findViewById(R.id.tv_category);
-        tv_availability=(TextView)findViewById(R.id.tv_from_date);
+        tv_availability=(TextView)findViewById(R.id.tv_availability);
 
         tv_to_date=(TextView)findViewById(R.id.tv_to_date);
         tv_from_date=(TextView)findViewById(R.id.tv_from_date);
@@ -111,11 +114,26 @@ public class ToolDetailsActivity extends AppCompatActivity {
         tv_name.setText(" :"+getIntent().getStringExtra("name"));
         tv_status.setText(" :"+getIntent().getStringExtra("status"));
         tv_price.setText(" :"+getIntent().getStringExtra("price"));
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference users = ref.child("Registered_users").child(posted_by).child("phone");
+        users.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String phone = dataSnapshot.getValue(String.class);
+                tv_phno.setText(" :"+phone);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         tv_desc.setText(" :"+getIntent().getStringExtra("description"));
         tv_condition.setText(" :"+getIntent().getStringExtra("condition"));
         tv_category.setText(" :"+getIntent().getStringExtra("category"));
         tv_availability.setText(":Tool is Available From :"+getIntent().getStringExtra("to_date"));
-       // tv_reviews.setText(" : ****");
+        // tv_reviews.setText(" : ****");
 
         Glide.with(ToolDetailsActivity.this).load(getIntent().getStringExtra("image")).into(image_view);
 
@@ -137,7 +155,7 @@ public class ToolDetailsActivity extends AppCompatActivity {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products").child(getIntent().getStringExtra("pid"));
                     StatusUpdatePojo statusUpdatePojo = new StatusUpdatePojo(pid, date, time, image, name, category, price, description, condition, status, posted_by, booked_by, tv_from_date.getText().toString(), tv_to_date.getText().toString(), et_price.getText().toString());
                     databaseReference.setValue(statusUpdatePojo);
-                    Toast.makeText(ToolDetailsActivity.this, "Tool Booked Succussfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ToolDetailsActivity.this, "Tool Requested Succussfully", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -153,30 +171,30 @@ public class ToolDetailsActivity extends AppCompatActivity {
         String price=getIntent().getStringExtra("price");
 
 
-         try {
+        try {
 
-             double doubleprice = Double.parseDouble(price);
-             int value = (int)Math.round(doubleprice);
+            double doubleprice = Double.parseDouble(price);
+            int value = (int)Math.round(doubleprice);
 
 
-             Date dateBefore=myFormat.parse(dateBeforeString);
-             Date dateAfter = myFormat.parse(dateAfterString);
-             long difference= dateAfter.getTime() - dateBefore.getTime();
-             float daysBetween = (difference/(1000*60*60*24));
-             final double calculateamount = daysBetween *value;
+            Date dateBefore=myFormat.parse(dateBeforeString);
+            Date dateAfter = myFormat.parse(dateAfterString);
+            long difference= dateAfter.getTime() - dateBefore.getTime();
+            float daysBetween = (difference/(1000*60*60*24));
+            final double calculateamount = daysBetween *value;
 
-             btn_get_price=(Button)findViewById(R.id.btn_get_price);
-             btn_get_price.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
+            btn_get_price=(Button)findViewById(R.id.btn_get_price);
+            btn_get_price.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     // Toast.makeText(ToolDetailsActivity.this, ""+calculateamount,Toast.LENGTH_SHORT).show();
-                     et_price.setText(""+calculateamount);
-                 }
-             });
+                    et_price.setText(""+calculateamount);
+                }
+            });
 
-         } catch (ParseException e) {
-             Toast.makeText(this,""+e,Toast.LENGTH_SHORT).show();
-         }
+        } catch (ParseException e) {
+            Toast.makeText(this,""+e,Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void datepicker1() {
@@ -212,16 +230,16 @@ public class ToolDetailsActivity extends AppCompatActivity {
 
         DatePickerDialog datePickerDialog= new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                DAY = dayOfMonth + " ";
-                MONTH = monthOfYear + 1 +"";
-                YEAR = year + "";
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        DAY = dayOfMonth + " ";
+                        MONTH = monthOfYear + 1 +"";
+                        YEAR = year + "";
 
-                tv_from_date.setText(dayOfMonth + "-"+(monthOfYear + 1)+"-"+year);
+                        tv_from_date.setText(dayOfMonth + "-"+(monthOfYear + 1)+"-"+year);
 
-            }
-        },mYear,mMonth,mDay);
+                    }
+                },mYear,mMonth,mDay);
         datePickerDialog.show();
     }
 
@@ -235,5 +253,4 @@ public class ToolDetailsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

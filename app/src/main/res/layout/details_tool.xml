@@ -1,264 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true">
-<TableLayout
-    android:id="@+id/tlContactDetails"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView android:id="@+id/image_view"
-        android:layout_width="17dp"
-        android:scaleType="fitXY"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center"
-        android:layout_height="120dp" />
-
-    <TableRow
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginLeft="25.00dp"
-            android:textColor="#111111"
-            android:layout_weight="0.5"
-            android:text="Name " />
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#111111 "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </TableRow>
-
-
-    <TableRow
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginLeft="25.00dp"
-            android:textColor="#111111"
-            android:layout_weight="0.5"
-            android:text="Status  " />
-
-        <TextView
-            android:id="@+id/tv_status"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#111111 "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </TableRow>
-
-    <TableRow
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginLeft="25.00dp"
-            android:textColor="#111111"
-            android:layout_weight="0.5"
-            android:text="Tool Availability" />
-
-        <TextView
-            android:id="@+id/tv_availability"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#111111 "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </TableRow>
-    <TableRow
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginLeft="25.00dp"
-            android:textColor="#111111"
-            android:layout_weight="0.5"
-            android:text="Category   "/>
-
-        <TextView
-            android:id="@+id/tv_category"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#111111"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginLeft="25.00dp"
-            android:textColor="#111111"
-            android:layout_weight="0.5"
-            android:text="Price " />
-
-        <TextView
-            android:id="@+id/tv_price"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#111111 "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </TableRow>
-
-    <TableRow
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginLeft="25.00dp"
-            android:textColor="#111111"
-            android:layout_weight="0.5"
-            android:text="Description " />
-
-        <TextView
-            android:id="@+id/tv_desc"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#111111 "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </TableRow>
-
-    <TableRow
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginLeft="25.00dp"
-            android:textColor="#111111"
-            android:layout_weight="0.5"
-            android:text="Condition " />
-
-        <TextView
-            android:id="@+id/tv_condition"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:textColor="#111111 "
-             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </TableRow>
-
-    <Button
-        android:id="@+id/btn_get_reviews"
-        android:text="Tool Reviews"
-        android:layout_gravity="end"
-        android:layout_marginTop="10.00dp"
-        android:layout_marginLeft="170.00dp"
-        android:layout_marginRight="25.00dp"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:drawableRight="@drawable/ic_aero"
-        android:drawablePadding="10.00dp"
+    <TableLayout
+        android:id="@+id/tlContactDetails"
         android:layout_width="match_parent"
-        android:layout_height="34.00dp"
-        android:background="@drawable/button_rounded"/>
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
- <LinearLayout
-    android:id="@+id/ll"
-    android:orientation="vertical"
-    android:padding="5dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        <ImageView android:id="@+id/image_view"
+            android:layout_width="17dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:layout_height="120dp" />
 
-    <LinearLayout
-        android:padding="5dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <TableRow
+            android:padding="5dp">
 
-        <TextView
-            android:id="@+id/tv_from_date"
-            android:layout_weight="1"
-            android:background="@drawable/login_edittext"
-            android:gravity="center"
-            android:layout_marginRight="10.00dp"
-            android:layout_marginLeft="10.00dp"
-            android:textSize="14.00dp"
-            android:textColor="#111111"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:textColor="#111111"
+                android:layout_weight="0.5"
+                android:text="Name " />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="#111111 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+
+        <TableRow
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:textColor="#111111"
+                android:layout_weight="0.5"
+                android:text="Status  " />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="#111111 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:textColor="#111111"
+                android:layout_weight="0.5"
+                android:text="Tool Availability" />
+
+            <TextView
+                android:id="@+id/tv_availability"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="#111111 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+        <TableRow
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="25dp"
+                android:textColor="#111111"
+                android:layout_weight="0.5"
+                android:text="Phone No " />
+
+            <TextView
+                android:id="@+id/tv_phno"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="#111111 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:textColor="#111111"
+                android:layout_weight="0.5"
+                android:text="Category  " />
+
+            <TextView
+                android:id="@+id/tv_category"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="#111111 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:textColor="#111111"
+                android:layout_weight="0.5"
+                android:text="Price " />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="#111111 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:textColor="#111111"
+                android:layout_weight="0.5"
+                android:text="Description " />
+
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="#111111 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:textColor="#111111"
+                android:layout_weight="0.5"
+                android:text="Condition " />
+
+            <TextView
+                android:id="@+id/tv_condition"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="#111111 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <Button
+            android:id="@+id/btn_get_reviews"
+            android:text="Tool Reviews"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_170sdp"
+            android:layout_marginRight="@dimen/_25sdp"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:drawableRight="@drawable/ic_aero"
+            android:drawablePadding="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="From Date"/>
+            android:layout_height="@dimen/_34sdp"
+            android:background="@drawable/button_rounded" />
 
-        <TextView
-            android:id="@+id/tv_to_date"
-            android:background="@drawable/login_edittext"
-            android:layout_marginRight="10.00dp"
-            android:layout_marginLeft="10.00dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="14.00dp"
-            android:textColor="#111111"
+        <LinearLayout
+            android:id="@+id/ll"
+            android:orientation="vertical"
+            android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="To Date"/>
-    </LinearLayout>
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/et_price"
-        android:hint="Total Price"
-        android:textSize="15dp"
-        android:background="@drawable/login_edittext"
-        android:padding="10.00dp"
-        android:textColor="#111111"
-        android:layout_marginTop="10.00dp"
-        android:layout_marginLeft="50.00dp"
-        android:layout_marginRight="50.00dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/btn_get_price"
-        android:text="Get Total Price"
-        android:layout_marginTop="10.00dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:background="@drawable/button_rounded"/>
 
-    <Button
-        android:id="@+id/btn_book"
-        android:text="Book"
-        android:visibility="gone"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:background="@drawable/button_rounded" />
- </LinearLayout>
-</TableLayout>
+            <LinearLayout
+                android:padding="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_from_date"
+                    android:layout_weight="1"
+                    android:background="@drawable/login_edittext"
+                    android:gravity="center"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="#111111 "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="From Date" />
+
+                <TextView
+                    android:id="@+id/tv_to_date"
+                    android:background="@drawable/login_edittext"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="#111111 "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="To Date " />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_price"
+                android:hint="Total Price"
+                android:textSize="15dp"
+                android:background="@drawable/login_edittext"
+                android:padding="@dimen/_10sdp"
+                android:textColor="#111111 "
+                android:editable="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_50sdp"
+                android:layout_marginRight="@dimen/_50sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_get_price"
+                android:text="Get Total Price"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/button_rounded" />
+
+            <Button
+                android:id="@+id/btn_book"
+                android:text="Request"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/button_rounded" />
+
+        </LinearLayout>
+
+
+
+
+    </TableLayout>
+
 </ScrollView>
