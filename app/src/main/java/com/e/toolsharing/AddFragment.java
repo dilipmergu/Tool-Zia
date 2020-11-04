@@ -253,6 +253,9 @@ public class AddFragment extends Fragment {
         productMap.put("status", status);
         productMap.put("posted_by", session);
         productMap.put("booked_by","");
+        productMap.put("from_date","");
+        productMap.put("to_date","");
+        productMap.put("total_price","");
 
         ProductsRef.child(productRandomKey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

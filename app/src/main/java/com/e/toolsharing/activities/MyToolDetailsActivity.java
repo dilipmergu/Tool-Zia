@@ -23,7 +23,7 @@ import com.e.toolsharing.models.StatusUpdatePojo;
 public class MyToolDetailsActivity extends AppCompatActivity {
     TextView tv_name,tv_status,tv_price,tv_category,tv_condition,tv_description;
     ImageView image_view;
-    Button btn_edit_tool,btn_delete;
+    Button btn_edit_tool,btn_damage;
     SharedPreferences sharedPreferences;
     String session;
     private String parentDbName = "Products";
@@ -34,7 +34,7 @@ public class MyToolDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_tool_details);
 
-        sharedPreferences =getSharedPreferences(com.e.toolsharing.activities.Utils.SHREF, Context.MODE_PRIVATE);
+        sharedPreferences =getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("user_name", "def-val");
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(parentDbName);
 
@@ -71,29 +71,31 @@ public class MyToolDetailsActivity extends AppCompatActivity {
                 intent.putExtra("pid", getIntent().getStringExtra("pid"));
                 intent.putExtra("category", getIntent().getStringExtra("category"));
                 intent.putExtra("posted_by", getIntent().getStringExtra("posted_by"));
-                intent.putExtra("booked_by", getIntent().getStringExtra("booked_by"));
+                intent.putExtra("booked_by", "");
                 intent.putExtra("date", getIntent().getStringExtra("date"));
                 intent.putExtra("time", getIntent().getStringExtra("time"));
+                intent.putExtra("from_date", getIntent().getStringExtra("from_date"));
+                intent.putExtra("to_date", getIntent().getStringExtra("to_date"));
+                intent.putExtra("total_price", getIntent().getStringExtra("total_price"));
                 startActivity(intent);
             }
         });
 
-       /* btn_delete=(Button)findViewById(R.id.btn_delete);
-        btn_delete.setOnClickListener(new View.OnClickListener() {
+        btn_damage=(Button)findViewById(R.id.btn_damage);
+        btn_damage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteUserData(getIntent().getStringExtra("pid"));
-                Toast.makeText(MyToolDetailsActivity.this, "Deleted Succussfully", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(MyToolDetailsActivity.this, MyToolsActivity.class);
+
+                Intent intent=new Intent(MyToolDetailsActivity.this,ToolsDamageActivity.class);
+                intent.putExtra("name",getIntent().getStringExtra("name"));
+                intent.putExtra("image",getIntent().getStringExtra("image"));
+                intent.putExtra("price",getIntent().getStringExtra("price"));
+                intent.putExtra("booked_by", getIntent().getStringExtra("booked_by"));
+                intent.putExtra("pid",getIntent().getStringExtra("pid"));
                 startActivity(intent);
-
-
             }
-        });*/
+        });
 
-    }
-    private void deleteUserData(String tooldetails) {
-        ProductsRef.child(tooldetails).removeValue();
     }
 
     @Override

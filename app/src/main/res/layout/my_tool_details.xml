@@ -157,10 +157,9 @@
         android:background="@drawable/button_rounded" />
 
     <Button
-        android:visibility="gone"
-        android:id="@+id/btn_delete"
-        android:text="Delete Tool"
-        android:layout_marginTop="40dp"
+        android:id="@+id/btn_damage"
+        android:text="Tool Damage"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:textAllCaps="false"
