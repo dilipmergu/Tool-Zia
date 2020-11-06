@@ -69,9 +69,11 @@ public class BookedToolsAdapter extends BaseAdapter {
         Button btn_reject=(Button)obj2.findViewById(R.id.btn_reject);
         if (ar.get(pos).getDate().equals("Approved")){
             btn_accept.setVisibility(android.view.View.INVISIBLE);
+            btn_reject.setVisibility(android.view.View.INVISIBLE);
         }
         else if (ar.get(pos).getDate().equals("Rejected")){
             btn_reject.setVisibility(android.view.View.INVISIBLE);
+            btn_accept.setVisibility(android.view.View.INVISIBLE);
         }
         btn_accept.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +97,7 @@ public class BookedToolsAdapter extends BaseAdapter {
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(parentDbName).child(ar.get(pos).getPid());
                 MyToolsPojo edittools= new MyToolsPojo(ar.get(pos).getTime(),ar.get(pos).getImage(),ar.get(pos).getName(),ar.get(pos).getCategory(),ar.get(pos).getPrice()
                         ,ar.get(pos).getDesc(),ar.get(pos).getCondition(),ar.get(pos).getStatus(),ar.get(pos).getPosted_by(),ar.get(pos).getBooked_by()
-                        ,ar.get(pos).getDate(),"Rejected",ar.get(pos).getPid(),"","","");
+                        ,ar.get(pos).getPosted_by(),"Rejected",ar.get(pos).getPid(),"","","");
                 databaseReference.setValue(edittools);
 
                 Toast.makeText(cnt,"This tool is Rejected",Toast.LENGTH_SHORT).show();

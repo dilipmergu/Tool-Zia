@@ -65,6 +65,10 @@ public class MyBookedToolsAdapter extends BaseAdapter {
         else if(ar.get(pos).getApprove_by_owner().isEmpty()){
             tv_status.setText("Status : "+"Pending");
         }
+        else if(ar.get(pos).getDate().equals("Rejected"))
+        {
+            tv_status.setText("Status : "+"Rejected");
+        }
         else
         {
             tv_status.setText("Status : "+"Approved");
