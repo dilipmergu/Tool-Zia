@@ -75,6 +75,7 @@ public class SearchAdapter extends BaseAdapter {
                 intent.putExtra("booked_by", "");
                 intent.putExtra("date", ar.get(pos).getDate().toString());
                 intent.putExtra("time", ar.get(pos).getTime().toString());
+                intent.putExtra("to_date",ar.get(pos).getTo_date().toString());
                 cnt.startActivity(intent);
             }
         });
