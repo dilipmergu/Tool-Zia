@@ -56,6 +56,13 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+        tv_forgetpwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
 
 
         et_USERNAME=(EditText) findViewById(R.id.et_USERNAME);

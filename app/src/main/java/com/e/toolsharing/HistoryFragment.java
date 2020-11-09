@@ -2,9 +2,13 @@ package com.e.toolsharing;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -15,6 +19,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.e.toolsharing.activities.BookedToolsActivity;
+import com.e.toolsharing.activities.ChangePasswordActivity;
+import com.e.toolsharing.activities.GetDamagedToolsActivity;
+import com.e.toolsharing.activities.LoginActivity;
+import com.e.toolsharing.activities.MyBookedToolsActivity;
+import com.e.toolsharing.activities.MyFavouriteActivity;
+import com.e.toolsharing.activities.MyProfileActivity;
+import com.e.toolsharing.activities.MyToolsActivity;
 import com.e.toolsharing.adapters.HistoryAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,6 +58,7 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.fragment_history, container, false);
+        setHasOptionsMenu(true);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("History");
 
         sharedPreferences =getActivity().getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
@@ -74,7 +87,9 @@ public class HistoryFragment extends Fragment {
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     HomeDataPojo homeDataPojo = snapshot.getValue(HomeDataPojo.class);
-                    a1.add(homeDataPojo);
+                    if (homeDataPojo.getDate().toString().equals("Approved")){
+                        a1.add(homeDataPojo);
+                    }
                 }
                 //Toast.makeText(getContext(), ""+a1.size(), Toast.LENGTH_SHORT).show();
                 historyAdapter = new HistoryAdapter(a1,getActivity());
@@ -91,5 +106,51 @@ public class HistoryFragment extends Fragment {
 
         }
     };
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.my_profile:
+                startActivity(new Intent(getContext(), MyProfileActivity.class));
+                return true;
+            case R.id.my_tools_posted:
+                startActivity(new Intent(getContext(), MyToolsActivity.class));
+                return true;
 
+            case R.id.my_fav_tools:
+                startActivity(new Intent(getContext(), MyFavouriteActivity.class));
+                return true;
+
+            case R.id.my_booked_tools:
+                startActivity(new Intent(getContext(), MyBookedToolsActivity.class));
+                return true;
+
+            case R.id.my_tools_booked:
+                startActivity(new Intent(getContext(), BookedToolsActivity.class));
+                return true;
+
+            case R.id.damaged_tool:
+                startActivity(new Intent(getContext(), GetDamagedToolsActivity.class));
+                return true;
+
+
+
+            case R.id.change_pwd:
+                startActivity(new Intent(getContext(), ChangePasswordActivity.class));
+                return true;
+
+            case R.id.logout:
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().finish();
+                return true;
+
+            default:
+                break;
+        }
+        return false;
+    }
 }

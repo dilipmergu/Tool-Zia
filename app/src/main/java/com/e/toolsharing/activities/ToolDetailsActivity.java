@@ -180,7 +180,13 @@ public class ToolDetailsActivity extends AppCompatActivity {
             Date dateBefore=myFormat.parse(dateBeforeString);
             Date dateAfter = myFormat.parse(dateAfterString);
             long difference= dateAfter.getTime() - dateBefore.getTime();
-            float daysBetween = (difference/(1000*60*60*24));
+            float daysBetween = (difference/(1000*60*60*24));// 5/11 to 7/11 2*1000*60*60*24/1000*60*60*24
+            if (daysBetween<0.0){
+
+                Toast.makeText(ToolDetailsActivity.this, "to day should be from today"+daysBetween, Toast.LENGTH_SHORT).show();
+            }else if (daysBetween== 1.0){
+                daysBetween = (float) 1.0;
+            }
             final double calculateamount = daysBetween *value;
 
             btn_get_price=(Button)findViewById(R.id.btn_get_price);
