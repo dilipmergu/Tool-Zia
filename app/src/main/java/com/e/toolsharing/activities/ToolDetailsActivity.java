@@ -155,7 +155,7 @@ public class ToolDetailsActivity extends AppCompatActivity {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products").child(getIntent().getStringExtra("pid"));
                     StatusUpdatePojo statusUpdatePojo = new StatusUpdatePojo(pid, date, time, image, name, category, price, description, condition, status, posted_by, booked_by, tv_from_date.getText().toString(), tv_to_date.getText().toString(), et_price.getText().toString());
                     databaseReference.setValue(statusUpdatePojo);
-                    Toast.makeText(ToolDetailsActivity.this, "Tool Requested Succussfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ToolDetailsActivity.this, "Tool Requested Successfully", Toast.LENGTH_SHORT).show();
                 }
             }
         });
