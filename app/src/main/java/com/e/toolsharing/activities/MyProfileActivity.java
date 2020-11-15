@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -89,17 +90,38 @@ public class MyProfileActivity extends AppCompatActivity {
         btn_update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference(parentDbName).child(session);
-                Users users=new Users(et_name.getText().toString(),et_phone.getText().toString(),et_pwd.getText().toString(),session,et_email.getText().toString(),imageURI);
-                databaseReference.setValue(users);
-                Toast.makeText(MyProfileActivity.this, "Profile Updated Succussfully", Toast.LENGTH_SHORT).show();
-                finish();
+                validatefields();
             }
         });
 
 
     }
+
+    private void validatefields() {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String phonepattern = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$";
+        if (TextUtils.isEmpty(et_phone.getText().toString()))
+        {
+            Toast.makeText(this, "Please write your phone number...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(et_email.getText().toString())){
+            Toast.makeText(this,"Please write email address",Toast.LENGTH_SHORT).show();
+        }
+        else if (!et_email.getText().toString().matches(emailPattern)){
+            Toast.makeText(this,"Please write valid email address",Toast.LENGTH_SHORT).show();
+        }
+        else if(!et_phone.getText().toString().matches(phonepattern)){
+            Toast.makeText(this,"please write 10 digit phone number in the 123 123 1234 format",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference(parentDbName).child(session);
+            Users users=new Users(et_name.getText().toString(),et_phone.getText().toString(),et_pwd.getText().toString(),session,et_email.getText().toString(),imageURI);
+            databaseReference.setValue(users);
+            Toast.makeText(MyProfileActivity.this, "Profile Updated Succussfully", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

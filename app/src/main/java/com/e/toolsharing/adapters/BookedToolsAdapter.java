@@ -27,6 +27,7 @@ import java.util.List;
 public class BookedToolsAdapter extends BaseAdapter {
     List<MyToolsPojo> ar;
     private  String parentDbName = "Products";
+    private  String parentDbNameHis = "History";
     Context cnt;
 
     public  BookedToolsAdapter(List<MyToolsPojo> ar, Context cnt){
@@ -79,10 +80,12 @@ public class BookedToolsAdapter extends BaseAdapter {
             @Override
             public void onClick(android.view.View v) {
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(parentDbName).child(ar.get(pos).getPid());
+                //DatabaseReference databaseReferenceH= FirebaseDatabase.getInstance().getReference(parentDbNameHis).child(ar.get(pos).getBooked_by()).child(ar.get(pos).getPid());
                 MyToolsPojo edittools=new MyToolsPojo(ar.get(pos).getTime(),ar.get(pos).getImage(),ar.get(pos).getName(),ar.get(pos).getCategory(),ar.get(pos).getPrice()
                         ,ar.get(pos).getDesc(),ar.get(pos).getCondition(),ar.get(pos).getStatus(),ar.get(pos).getPosted_by(),ar.get(pos).getBooked_by()
                         ,ar.get(pos).getPosted_by(),"Approved",ar.get(pos).getPid(),ar.get(pos).getFrom_date(),ar.get(pos).getTo_date(),ar.get(pos).getPrice());
                 databaseReference.setValue(edittools);
+                //databaseReferenceH.setValue(edittools);
 
                 Toast.makeText(cnt,"Approved Successfully",Toast.LENGTH_SHORT).show();
             }

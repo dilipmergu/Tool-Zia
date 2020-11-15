@@ -20,6 +20,7 @@ TextView textlogo,texttagline;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        getSupportActionBar().hide();
         imageView= findViewById(R.id.imageView);
         textlogo= findViewById(R.id.textView4);
         texttagline=findViewById(R.id.textView5);
